@@ -1,5 +1,18 @@
+* { padding: 0; margin: 0; }
+
 #space_1 {
-    background-color: brown;
+    background-color: rgb(143, 238, 130);
     text-align: center;
     
 }
+
+#news-list{
+    flex-grow: 1;
+}
+
+html, body {
+    height: 100%;
+    
+    display: flex;
+    flex-direction: column;
+  }
