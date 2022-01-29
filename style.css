@@ -16,3 +16,8 @@ html, body {
     display: flex;
     flex-direction: column;
   }
+
+  #boxes{
+    
+    background-image: url("https://media.warriortrading.com/2019/08/shutterstock_775889491.jpg");
+  }
