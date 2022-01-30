@@ -23,13 +23,13 @@ o_Stock_List.push(stock);
 const btn_left = document.querySelector('#left_button');
 const btn_right = document.querySelector('#right_button');
 var chart_link = document.getElementById('Chart_Search');
-
+var i = 0;
 
 function switch_right()
 {   
     //Main Info
-    const s_name = o_Stock_List[0].name;
-    const s_market_temp = o_Stock_List[0].market_temp; 
+    const s_name = o_Stock_List[i].name;
+    const s_market_temp = o_Stock_List[i].market_temp; 
 
     const card_title = document.querySelector('#stock_title');
     const card_temp = document.querySelector('#stock_description_1');
@@ -44,10 +44,11 @@ function switch_right()
     
 }
 
+//toDo
 function switch_left()
 {
-    const s_name = o_Stock_List[0].name;
-    const s_market_temp = o_Stock_List[0].market_temp;
+    const s_name = o_Stock_List[--i].name;
+    const s_market_temp = o_Stock_List[--i].market_temp;
 
     const card_title = document.querySelector('#stock_title')
     event.preventDefault();
@@ -59,8 +60,9 @@ const newsList= document.querySelector('.news-list')
 
 function retreive(e){
 
+    newsList.innerHTML = '';
     const apiKey = '0a73adc839c64b13b9e7aa791f23a769'
-    let topic = o_Stock_List[0].name + " Stocks"
+    let topic = o_Stock_List[i].name + " Stocks"
     let url = "https://newsapi.org/v2/everything?q="+topic+"&apiKey="+apiKey
 
     fetch(url).then((res)=>{
@@ -68,13 +70,19 @@ function retreive(e){
     }).then((data)=>{
         console.log(data);
         data.articles.forEach(article => {
-            let li = document.createElement('li')
+            let li = document.createElement('div')
             let a = document.createElement('a')
+            let p = document.createElement('p')
             a.setAttribute('href', article.url)
             a.setAttribute('target', '_blank')
+            a.setAttribute('class',"text-light" )
+            p.setAttribute('class',"text-light" )
             a.textContent = article.title;
+            p.innerHTML = article.description.italics();
+            li.setAttribute('class',"bg-dark p-5 mb-3")
 
             li.appendChild(a)
+            li.appendChild(p)
             newsList.appendChild(li)
         });
     })
@@ -84,5 +92,6 @@ function retreive(e){
 
 
 btn_left.addEventListener('click',switch_left)
+btn_left.addEventListener('click',retreive)
 btn_right.addEventListener('click',switch_right)
 btn_right.addEventListener('click',retreive)
