@@ -3,7 +3,7 @@
 //                 ------------------SORTING & INPUTTING--------------------
 //stock data
 const stock = {
-    name:"AAPL",
+    name:"GOOGL",
     polarity:"-1",
     datePublished: "",
     subjectivity: "",
@@ -40,7 +40,7 @@ function switch_right()
     
     //Charts Info
     chart_link.setAttribute('href',"https://www.google.com/search?q="+o_Stock_List[0].name+"+"+"Stocks")
-
+    
     
 }
 
@@ -89,7 +89,22 @@ function retreive(e){
     
 }
 
-
+new TradingView.widget(
+    {
+    "width": 432,
+    "height": 270,
+    "symbol": "NASDAQ:"+o_Stock_List[i].name,
+    "interval": "D",
+    "timezone": "Etc/UTC",
+    "theme": "light",
+    "style": "1",
+    "locale": "en",
+    "toolbar_bg": "#f1f3f6",
+    "enable_publishing": false,
+    "allow_symbol_change": true,
+    "container_id": "tradingview_49aa9"
+  }
+    );
 
 btn_left.addEventListener('click',switch_left)
 btn_left.addEventListener('click',retreive)
